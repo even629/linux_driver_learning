@@ -31,8 +31,6 @@ struct led_drv_data {
         void __iomem *gpio0_swport_ddr_l;
         void __iomem *gpio0_swport_dr_l;
         void __iomem *gpio0_ext_port;
-        char read_kbuf[4];
-        char write_kbuf[4];
 };
 
 static struct led_drv_data *led_drv_data;
@@ -46,48 +44,57 @@ int light_up_led_open(struct inode *inode, struct file *file)
 ssize_t light_up_led_read(struct file *file, char __user *buf, size_t size, loff_t *offset)
 {
         struct led_drv_data *drv_data = file->private_data;
-        size_t len = min(size, (size_t)((loff_t)4 - *offset));
         u32 val;
 
-        if (*offset == 0) {
-                val = readl(drv_data->gpio0_ext_port);
-                drv_data->read_kbuf[0] = (val >> 24) & 0xFF;
-                drv_data->read_kbuf[1] = (val >> 16) & 0xFF;
-                drv_data->read_kbuf[2] = (val >> 8) & 0xFF;
-                drv_data->read_kbuf[3] = val & 0xFF;
+        if (size != sizeof(u32)) {
+                pr_info("read need 4 bytes\n");
+                return -ENOMEM;
         }
 
-        if (copy_to_user(buf, drv_data->read_kbuf + *offset, len) != 0) {
+        val = readl(drv_data->gpio0_ext_port);
+        val &= 1 << 15;// gpio0_b7
+        val = val >> 15;
+
+        if (copy_to_user(buf, &val, sizeof(u32)) != 0) {
                 return -EFAULT;
         }
 
-        *offset += len;
-
-        return len;
+        return sizeof(u32);
 }
 ssize_t light_up_led_write(struct file *file, const char __user *buf, size_t size, loff_t *offset)
 {
         struct led_drv_data *drv_data = file->private_data;
-        size_t len = min(size, (size_t)((loff_t)4 - *offset));
         u32 val;
 
-        if (copy_from_user(led_drv_data->write_kbuf + *offset, buf, len) != 0) {
-                return -EFAULT;
+        if (size != sizeof(u32)) {
+                pr_err("write need 4 bytes\n");
+                return -ENOMEM;
         }
 
-        *offset += len;
-
-        if (*offset >= 4) {
+        if (copy_from_user(&val, buf, sizeof(u32)) != 0) {
+                return -EFAULT;
+        }
+        if (val > 0) {
+                // 配置为GPIO输出
                 val = readl(drv_data->gpio0_swport_ddr_l);
-                val |= 0x40004000;
+                val |= 0x80008000;
+                writel(val, drv_data->gpio0_swport_ddr_l);
+
+                val = readl(drv_data->gpio0_swport_dr_l);
+                val |= 0x80008000;
+                writel(val, drv_data->gpio0_swport_dr_l);
+        } else if (val == 0) {
+                val = readl(drv_data->gpio0_swport_ddr_l);
+                val |= 0x80008000;
                 writel(val, drv_data->gpio0_swport_ddr_l);
                 
                 val = readl(drv_data->gpio0_swport_dr_l);
-                val |= 0x40004000;
+                val |= 0x80000000;
+                val &= 0xffff7fff;
                 writel(val, drv_data->gpio0_swport_dr_l);
         }
 
-        return len;
+        return sizeof(u32);
 }
 
 int light_up_led_release(struct inode *inode, struct file *file)

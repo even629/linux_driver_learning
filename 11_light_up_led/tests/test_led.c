@@ -18,7 +18,7 @@ int main(int argc, char **argv)
                 err = read(fd, &val, 4);
                 if (err < 0)
                         goto fail;
-                printf("read:%u\n", val);
+                printf("read:0x%08x\n", val);
         } else if (argc >= 2) { // write
                 val = atoi(argv[1]);
                 if (val < 0) {

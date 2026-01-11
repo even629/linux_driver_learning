@@ -1,4 +1,4 @@
-DRIVER_NAME := driver
+DRIVER_NAME := semaphore_test
 
 obj-m += $(DRIVER_NAME).o
 KERNEL_SRC:=/home/zhaohang/repository/linux/linux-5.10.y-raspi
@@ -12,17 +12,21 @@ all: build
 
 build:
 	$(MAKE) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) -C $(KERNEL_SRC) M=$(PWD) modules
+	$(MAKE) -C $(PWD)/tests all
 
 clean:
 	$(MAKE) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) -C $(KERNEL_SRC) M=$(PWD) modules clean
 	rm -rf *.ko *.o *.mod.o *.mod.c *.symvers *.order .tmp* .cache
+	$(MAKE) -C $(PWD)/tests clean
 
 .PHONY: all deploy qemu
 deploy:
 	cp $(DRIVER_NAME).ko /home/zhaohang/repository/linux/busybox-1.37.0/_install
+	cp $(PWD)/tests/*.o /home/zhaohang/repository/linux/busybox-1.37.0/_install
+	chmod a+x /home/zhaohang/repository/linux/busybox-1.37.0/_install/*.o
 	/bin/bash /home/zhaohang/repository/linux/busybox-1.37.0/deploy.sh
 
-qemu: deploy
+qemu: build deploy
 	qemu-system-aarch64 \
 		-M raspi4b \
 		-cpu cortex-a72 \

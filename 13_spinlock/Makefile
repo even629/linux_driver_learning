@@ -1,4 +1,4 @@
-DRIVER_NAME := driver
+DRIVER_NAME := spinlock_test
 
 obj-m += $(DRIVER_NAME).o
 KERNEL_SRC:=/home/zhaohang/repository/linux/linux-5.10.y-raspi
