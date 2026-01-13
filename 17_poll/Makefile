@@ -1,4 +1,4 @@
-DRIVER_NAME := driver
+DRIVER_NAME := poll_test
 
 obj-m += $(DRIVER_NAME).o
 KERNEL_SRC:=/home/zhaohang/repository/linux/linux-5.10.y-raspi
