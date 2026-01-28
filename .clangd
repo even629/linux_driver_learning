@@ -1,3 +1,8 @@
 CompileFlags:
-  Add: -Wno-unknown-warning-option
-  Remove: [-m*, -f*]
+  Add:
+    - --target=aarch64-linux-gnu
+    - --sysroot=/home/zhaohang/tools/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc
+    - -Wno-unknown-warning-option
+  Remove:
+    - -m*
+    - -f*

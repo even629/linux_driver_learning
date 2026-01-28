@@ -5,7 +5,7 @@ KERNEL_SRC:=/home/zhaohang/repository/linux/linux-5.10.y-raspi
 
 PWD ?=$(shell pwd)
 ARCH = arm64
-CROSS_COMPILE = aarch64-linux-gnu-
+CROSS_COMPILE = aarch64-none-linux-gnu-
 
 # 是否编译测试代码
 TESTS_DIR := $(PWD)/tests

@@ -8,7 +8,7 @@ KERNEL_SRC:=/home/zhaohang/repository/linux/linux-5.10.y-raspi
 
 PWD ?=$(shell pwd)
 ARCH = arm64
-CROSS_COMPILE = aarch64-linux-gnu-
+CROSS_COMPILE = aarch64-none-linux-gnu-
 
 MODULE_DEFAULT_A=6
 MODULE_DEFAULT_B=9
