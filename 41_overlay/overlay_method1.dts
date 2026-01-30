@@ -1,0 +1,9 @@
+/dts-v1/;
+/plugin/;
+
+&{/rk-485-ctl}{
+    overlay_node{
+        status = "okay";
+    };
+};
+

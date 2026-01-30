@@ -1,0 +1,25 @@
+/dts-v1/;
+/plugin/;
+
+
+/{
+
+        fragment@0{
+                target-path="/rk-485-ctl";
+                __overlay__{
+                        overly_node{
+                                status="okay";
+                        };
+                };
+        };
+
+        fragment@1{
+                target=<&rk_485_ctl>;
+                __overlay__{
+                        overlay_node{
+                                status="okay";
+                        };
+                };
+        };
+
+};

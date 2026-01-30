@@ -1,0 +1,23 @@
+/dts-v1/
+
+
+#include "dt-bindings/pinctrl/rockchip.h"
+#include "dt-bindings/gpio/gpio.h"
+
+
+/{
+        model = "This is my device Tree";
+
+        work_led: led@0{
+                compatible = "gpio-leds";
+                gpios = <&gpio0 RK_PB7 GPIO_ACTIVE_HIGH>;
+                pinctrl-names = "default";
+                pinctrl-0 = <&rk_led_gpio>;
+        }
+
+        &pinctrl {                
+                rk_led_gpio:rk-led-gpio{
+                        rockchip,pins = <0 RK_PB7 RK_FUNC_GPIO &pcfg_pull_none>;
+                }
+        };
+}
