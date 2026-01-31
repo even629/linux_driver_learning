@@ -40,5 +40,7 @@ all: $(OBJS)
 
 rev: $(REV_DTS)
 
+deploy:
+	cp $(OBJS) ~/share/
 clean:
 	rm -f $(OBJS) $(REV_DTS)
