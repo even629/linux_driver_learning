@@ -3,6 +3,8 @@ CFLAGS  := -g -Wall
 
 SRCS    := $(wildcard *.c)
 OBJS    := $(SRCS:%.c=%.o)
+
+
 PWD     ?= $(shell pwd)
 
 all: $(OBJS)
@@ -12,5 +14,7 @@ all: $(OBJS)
 
 clean:
 	rm -rf $(OBJS) .cache compile_commands.json
+deploy:
+	cp $(PWD)/*.o ~/share
 
 .PHONY: all clean

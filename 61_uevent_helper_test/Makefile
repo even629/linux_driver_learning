@@ -12,5 +12,6 @@ all: $(OBJS)
 
 clean:
 	rm -rf $(OBJS) .cache compile_commands.json
-
+deploy:
+	cp $(PWD)/*.o ~/share
 .PHONY: all clean

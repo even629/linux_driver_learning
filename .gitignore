@@ -1,1 +1,19 @@
 .cache
+compile_commands.json
+
+# 编译生成的文件
+*.o
+*.ko
+*.mod
+*.mod.c
+*.mod.o
+*.cmd
+*.o.d
+*.symvers
+*.order
+.tmp*
+
+# 内核模块构建产物
+.modules/
+Module.symvers
+modules.order

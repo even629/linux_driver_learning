@@ -2,9 +2,8 @@
 
 参考: https://even629.com/posts/2512310/
 
-# 代码解释
+# 代码解释参考: 
 
-参考: 
 
 | 目录                  | 链接                               |
 | --------------------- | ---------------------------------- |
@@ -22,15 +21,15 @@
 | 12. gpio 子系统       | https://even629.com/posts/2512173/ |
 | 13. 输入子系统        | https://even629.com/posts/2512183/ |
 | 14. 单总线            | https://even629.com/posts/2512233/ |
-| 15. I2C               | https://even629.com/posts/2512283  |
-| 16. SPI               | https://even629.com/posts/2512303  |
-| 17. UART              | https://even629.com/posts/2512313  |
-| 18. PWM               | https://even629.com/posts/2601043  |
-| 19. RTC               | https://even629.com/posts/2601053  |
-| 20. Watchdog          | https://even629.com/posts/2601063  |
-| 21. CAN               | https://even629.com/posts/2601093  |
-| 22. 网络设备          | https://even629.com/posts/2601133  |
-| 23. ADC               | https://even629.com/posts/2601143  |
+| 15. I2C               | https://even629.com/posts/2512283/ |
+| 16. SPI               | https://even629.com/posts/2512303/ |
+| 17. UART              | https://even629.com/posts/2512313/ |
+| 18. PWM               | https://even629.com/posts/2601043/ |
+| 19. RTC               | https://even629.com/posts/2601053/ |
+| 20. Watchdog          | https://even629.com/posts/2601063/ |
+| 21. CAN               | https://even629.com/posts/2601093/ |
+| 22. 网络设备          | https://even629.com/posts/2601133/ |
+| 23. ADC               | https://even629.com/posts/2601143/ |
 | 24. IIO               | TODO                               |
 | 25. USB               | TODO                               |
 | 26. LCD               | TODO                               |
