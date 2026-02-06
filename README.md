@@ -1,6 +1,9 @@
 # 环境搭建
 
-参考: https://even629.com/posts/2512310/
+参考: 
+- [WSL2安装Ubuntu-20.04与配置](https://even629.com/posts/2512299/)
+- [Qemu 树莓派4b Linux module开发环境](https://even629.com/posts/2512310/)
+- [topeet RK3568 Linux5.10 ArchLinux编译](https://even629.com/posts/2512260/)
 
 # 代码解释参考: 
 
