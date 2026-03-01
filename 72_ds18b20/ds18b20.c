@@ -268,7 +268,9 @@ long ds18b20_unlocked_ioctl(struct file *file, unsigned int cmd, unsigned long a
 
                 pr_info("raw_temp is %d\n", raw_temp);
 
-                if (copy_to_user((void *)arg, &raw_temp, sizeof(int16_t)) != 0)
+                // if (copy_to_user((void *)arg, &raw_temp, sizeof(int16_t)) != 0)
+                //         return -EFAULT;
+                if(put_user(raw_temp, (int16_t __user *)arg))
                         return -EFAULT;
                 break;
         default:
