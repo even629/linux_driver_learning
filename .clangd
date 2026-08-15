@@ -1,8 +1,11 @@
 CompileFlags:
   Add:
-    - --target=aarch64-linux-gnu
-    - --sysroot=/home/zhaohang/tools/gcc-arm-11.2-2022.02-x86_64-aarch64-none-linux-gnu/aarch64-none-linux-gnu/libc
     - -Wno-unknown-warning-option
+    - -Wno-unknown-pragmas
+    - -fshort-wchar
+    - -funsigned-char
+    - -fno-common
+    - -fms-extensions
   Remove:
     - -m*
     - -f*
